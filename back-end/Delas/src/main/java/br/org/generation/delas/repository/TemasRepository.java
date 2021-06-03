@@ -6,7 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.org.generation.delas.model.Temas;
 
-public interface TemasRepository extends JpaRepository <Temas, Long> {
-	public List<Temas> findAllByCategoriasContainingIgnoreCase(String categorias);
+public interface TemasRepository extends JpaRepository<Temas, Integer> {
 	
+	public List<Temas> findAllByCategoriasContainingIgnoreCase(String categorias);
+
+	public List<Temas> findAllByDescricaoContainingIgnoreCase(String descricao);
+
 }

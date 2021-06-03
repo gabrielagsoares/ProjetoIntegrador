@@ -12,18 +12,18 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "tb_temas")
 public class Temas {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@NotNull
 	@Size(min = 5, max = 255)
 	private String categorias;
-	
+
 	@Size(min = 5, max = 255)
 	private String descricao;
-	
+
 	@Positive
 	private int qtd_post;
 
@@ -59,5 +59,4 @@ public class Temas {
 		this.qtd_post = qtd_post;
 	}
 
-	
 }
