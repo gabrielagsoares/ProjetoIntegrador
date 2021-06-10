@@ -71,15 +71,7 @@ public class UsuarioModel {
 	@JsonIgnoreProperties("user")
 	private List<UsuarioModel> usuario;
 	
-	/*Relacionamento pra teste
-	 * @ManyToOne
-	@JsonIgnoreProperties("empreen")
-	private UsuarioModel empreen;
 	
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuario")
-	private List<UsuarioModel> usuario ;*/
-
 	public int getId() {
 		return id;
 	}
