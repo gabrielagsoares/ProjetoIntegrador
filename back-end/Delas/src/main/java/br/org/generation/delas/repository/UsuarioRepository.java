@@ -8,6 +8,7 @@ import br.org.generation.delas.model.UsuarioModel;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioModel,Integer>{
 
-	public Optional<UsuarioModel> findByUser(String user);
+	public Optional<UsuarioModel> findByUsuario(String usuario);
+	public Optional<UsuarioModel> findByEmail(String email);
 
 }

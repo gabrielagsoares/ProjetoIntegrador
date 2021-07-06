@@ -2,20 +2,24 @@ package br.org.generation.delas.model;
 
 public class UserLogin {
 	
-	private String nome;
+	private int id;
 	
 	private String usuario;
 	
 	private String senha;
 	
 	private String token;
-
-	public String getNome() {
-		return nome;
+	
+	private String fotoPerfil;
+	
+	private String tipoUser;
+	
+	public int getId() {
+		return id;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsuario() {
@@ -41,6 +45,24 @@ public class UserLogin {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
+	public String getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+	public void setFotoPerfil(String fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
+	}
+
+	public String getTipoUser() {
+		return tipoUser;
+	}
+
+	public void setTipoUser(String tipoUser) {
+		this.tipoUser = tipoUser;
+	}
+	
+	
 	
 
 }

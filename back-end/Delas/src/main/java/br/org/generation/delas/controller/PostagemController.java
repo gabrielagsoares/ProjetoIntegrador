@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.delas.model.PostagemModel;
 import br.org.generation.delas.repository.PostagemRepository;
+import br.org.generation.delas.service.PostagemService;
 
 @RestController
 @RequestMapping("/postagens")
@@ -25,6 +26,9 @@ public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository repository;
+	
+	@Autowired
+	private PostagemService postagemService;
 	
 	// find All pra trazer todas as postagens
 		@GetMapping
@@ -51,8 +55,16 @@ public class PostagemController {
 			return ResponseEntity.status(HttpStatus.OK).body(repository.save(uptadePostagem));
 		}
 		
+		@PutMapping("/curtir/{id}")
+		public ResponseEntity<PostagemModel> putCurtirPostagemId (@PathVariable int id){
+			
+			return ResponseEntity.status(HttpStatus.OK).body(postagemService.curtir(id));
+		
+		}
+		
 		@DeleteMapping("/{id}")
 		public void delete(@PathVariable int id) {
 			repository.deleteById(id);
 		}
+		
 }

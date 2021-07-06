@@ -18,9 +18,6 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
-
-
-
 @Entity
 @Table(name = "tb_usuarios")
 public class UsuarioModel {
@@ -37,7 +34,7 @@ public class UsuarioModel {
 	private String genero;
 	
 	// Confirmar se a anotação esta correta e criar uma condição para maior de 18(cadastro)
-	@NotNull
+	
 	private Date dataNasc;
 	
 	@NotNull
@@ -49,7 +46,7 @@ public class UsuarioModel {
 	
 	// Criar uma condição que não permita a repetição de um nome de usuario; findByUser
 	@NotNull
-	private String user;
+	private String usuario;
 	
 	private String telefone;
 	
@@ -65,11 +62,11 @@ public class UsuarioModel {
 	private String bio;
 	
 	@NotNull
-	private Boolean tipoUser;
+	private String tipoUser;
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("user")
-	private List<UsuarioModel> usuario;
+	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuarios")
+	private List<PostagemModel> postagens;
 	
 	
 	public int getId() {
@@ -120,12 +117,12 @@ public class UsuarioModel {
 		this.senha = senha;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setUser(String user) {
-		this.user = user;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getTelefone() {
@@ -168,21 +165,24 @@ public class UsuarioModel {
 		this.bio = bio;
 	}
 
-	public Boolean getTipoUser() {
+	
+
+	public String getTipoUser() {
 		return tipoUser;
 	}
 
-	public void setTipoUser(Boolean tipoUser) {
+	public void setTipoUser(String tipoUser) {
 		this.tipoUser = tipoUser;
 	}
 
-	public List<UsuarioModel> getUsuario() {
-		return usuario;
+	public List<PostagemModel> getPostagens() {
+		return postagens;
 	}
 
-	public void setUsuario(List<UsuarioModel> usuario) {
-		this.usuario = usuario;
+	public void setPostagens(List<PostagemModel> postagens) {
+		this.postagens = postagens;
 	}
+
 	
 	
 	

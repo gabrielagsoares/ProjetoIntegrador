@@ -2,6 +2,9 @@ package br.org.generation.delas.model;
 
 
 
+
+
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,10 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 
 
@@ -34,12 +39,12 @@ public class Temas {
 	@Size(min = 5, max = 255)
 	private String descricao;
 
-	@Positive
+	@PositiveOrZero
 	private int qtd_post;
 	
-	@OneToMany(mappedBy = "categorias", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("categorias")
-	private List<PostagemModel> Postagem;
+	@OneToMany(mappedBy = "temas", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("temas")
+	private List<PostagemModel> postagens;
 
 
 	public int getId() {
@@ -74,13 +79,15 @@ public class Temas {
 		this.qtd_post = qtd_post;
 	}
 
-	public List<PostagemModel> getPostagem() {
-		return Postagem;
+	public List<PostagemModel> getPostagens() {
+		return postagens;
 	}
 
-	public void setPostagem(List<PostagemModel> postagem) {
-		Postagem = postagem;
+	public void setPostagens(List<PostagemModel> postagens) {
+		this.postagens = postagens;
 	}
+
+	
 	
 	
 }

@@ -16,46 +16,74 @@ import br.org.generation.delas.repository.UsuarioRepository;
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioRepository repository;
-	
-	public UsuarioModel CadastrarUsuario (UsuarioModel usuario) {
-		
-		if(repository.findByUser(usuario.getUser()).isPresent()) {
-			return null; 
-		}
-		
+	private UsuarioRepository usuarioRepository;
+
+	public Optional<UsuarioModel> CadastrarUsuario(UsuarioModel usuario) {
+
+		/* Verifica se o usuário existe */
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
+			return null;
+
+		/* Verifica se o email existe */
+		if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
+			return null;
+
+		/* Criprtografa a senha */
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		
-	String senhaEncoder = encoder.encode(usuario.getSenha());
-	usuario.setSenha(senhaEncoder);
-	
-	return repository.save(usuario); //esclarecer 
-	
+		String senhaEncoder = encoder.encode(usuario.getSenha());
+
+		/*
+		 * Atualiza a senha no objeto usuario, ou seja, substitui a senha digitada pela
+		 * senha criptografada
+		 */
+		usuario.setSenha(senhaEncoder);
+
+		return Optional.of(usuarioRepository.save(usuario));
 	}
-	
-	public Optional<UserLogin> Logar(Optional<UserLogin> user){
-		
+
+	public Optional<UsuarioModel> atualizarUsuario(UsuarioModel usuario) {
+
+		/* Verifica se o email já existe */
+		if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
+			return null;
+
+		/* Criprtografa a senha */
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<UsuarioModel> usuario = repository.findByUser(user.get().getUsuario());
-		
-		if(usuario.isPresent()) {
-			if(encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {
-				
-				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
+		String senhaEncoder = encoder.encode(usuario.getSenha());
+
+		/*
+		 * Atualiza a senha no objeto usuario, ou seja, substitui a senha digitada pela
+		 * senha criptografada
+		 */
+		usuario.setSenha(senhaEncoder);
+
+		return Optional.of(usuarioRepository.save(usuario));
+
+	}
+
+	public Optional<UserLogin> Logar(Optional<UserLogin> usuario) {
+
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		Optional<UsuarioModel> usuarios = usuarioRepository.findByUsuario(usuario.get().getUsuario());
+
+		if (usuario.isPresent()) {
+			if (encoder.matches(usuario.get().getSenha(), usuarios.get().getSenha())) {
+
+				String auth = usuario.get().getUsuario() + ":" + usuario.get().getSenha();
 				byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 				String authHeader = "Basic " + new String(encodeAuth);
-				
-				user.get().setToken(authHeader);
-				user.get().setNome(usuario.get().getNome());
-				user.get().setSenha(usuario.get().getSenha());
-				return user;
-				
-				
-				
-									
+
+				usuario.get().setToken(authHeader);
+				usuario.get().setId(usuario.get().getId());
+				usuario.get().setUsuario(usuario.get().getUsuario());
+				usuario.get().setSenha(usuario.get().getSenha());
+				//usuario.get().setFotoPerfil(usuario.get().getFotoPerfil());
+				//usuario.get().setTipoUser(usuario.get().getTipoUser());
+				return usuario;
+
 			}
 		}
-		
+
 		return null;
 	}
 }

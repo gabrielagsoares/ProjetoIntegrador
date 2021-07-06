@@ -15,34 +15,32 @@ import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
-
 @Entity
 @Table(name = "tb_postagens")
 public class PostagemModel {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String fotoPost;
-	
+
 	@Positive
 	private int curtidas;
-	
+
 	@Column(columnDefinition = "text")
 	private String textoPost;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date data = new java.sql.Date(System.currentTimeMillis());
-	
+	private Date dataPost = new java.sql.Date(System.currentTimeMillis());
+
 	@ManyToOne
-	@JsonIgnoreProperties("categorias")
-	private Temas categorias;
-	
+	@JsonIgnoreProperties("postagem")
+	private Temas temas;
+
 	@ManyToOne
-	@JsonIgnoreProperties("user")
-	private UsuarioModel user;
+	@JsonIgnoreProperties("postagem")
+	private UsuarioModel usuarios;
 
 	public int getId() {
 		return id;
@@ -77,29 +75,27 @@ public class PostagemModel {
 	}
 
 	public Date getData() {
-		return data;
+		return dataPost;
 	}
 
 	public void setData(Date data) {
-		this.data = data;
+		this.dataPost = data;
 	}
 
-	public Temas getCategorias() {
-		return categorias;
+	public Temas getTemas() {
+		return temas;
 	}
 
-	public void setCategorias(Temas categorias) {
-		this.categorias = categorias;
+	public void setTemas(Temas temas) {
+		this.temas = temas;
 	}
 
-	public UsuarioModel getUser() {
-		return user;
+	public UsuarioModel getUsuarios() {
+		return usuarios;
 	}
 
-	public void setUser(UsuarioModel user) {
-		this.user = user;
+	public void setUser(UsuarioModel usuarios) {
+		this.usuarios = usuarios;
 	}
-	
-	
-	
+
 }
