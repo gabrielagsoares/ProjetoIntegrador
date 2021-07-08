@@ -67,7 +67,7 @@ public class UsuarioModel {
 	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("usuarios")
 	private List<PostagemModel> postagens;
-	
+
 	
 	public int getId() {
 		return id;
@@ -165,8 +165,6 @@ public class UsuarioModel {
 		this.bio = bio;
 	}
 
-	
-
 	public String getTipoUser() {
 		return tipoUser;
 	}
@@ -182,7 +180,9 @@ public class UsuarioModel {
 	public void setPostagens(List<PostagemModel> postagens) {
 		this.postagens = postagens;
 	}
-
+	
+	
+	
 	
 	
 	

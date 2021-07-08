@@ -17,14 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.org.generation.delas.model.Temas;
 import br.org.generation.delas.repository.TemasRepository;
+import br.org.generation.delas.service.TemaService;
 
 @RestController
 @RequestMapping("/temas")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TemasController {
 
 	@Autowired
 	private TemasRepository repository;
+	
+	private TemaService temaService;
+	
+	
+	
 
 	// find All pra trazer todas categorias
 	@GetMapping
@@ -48,6 +54,19 @@ public class TemasController {
 	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<List<Temas>> GetByDescricao(@PathVariable String descricao) {
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(descricao));
+	}
+	
+	/**
+	 * 
+	 * Calcula o numero de postagens por tema
+	 * 
+	 */
+	
+	@GetMapping("/trendtopics")
+	public ResponseEntity<List<Temas>> getTrendTopics() {
+		
+		return ResponseEntity.ok(temaService.trendTopics());
+	
 	}
 
 	// gravar uma nova categoria
