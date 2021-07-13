@@ -74,12 +74,12 @@ public class PostagemModel {
 		this.textoPost = textoPost;
 	}
 
-	public Date getData() {
+	public Date getDataPost() {
 		return dataPost;
 	}
 
-	public void setData(Date data) {
-		this.dataPost = data;
+	public void setDataPost(Date dataPost) {
+		this.dataPost = dataPost;
 	}
 
 	public Temas getTemas() {
@@ -94,8 +94,10 @@ public class PostagemModel {
 		return usuarios;
 	}
 
-	public void setUser(UsuarioModel usuarios) {
+	public void setUsuarios(UsuarioModel usuarios) {
 		this.usuarios = usuarios;
 	}
+	
+	
 
 }

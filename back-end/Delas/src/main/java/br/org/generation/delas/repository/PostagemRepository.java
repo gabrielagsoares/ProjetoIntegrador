@@ -2,6 +2,8 @@ package br.org.generation.delas.repository;
 
 
 
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +18,7 @@ import br.org.generation.delas.model.PostagemModel;
 @Transactional(readOnly = true)
 public interface PostagemRepository extends JpaRepository<PostagemModel, Integer>{
 	
+	//public List <PostagemModel> findAllByTituloContainingIgnoreCase(String titulo);
 	
 	
 	/**
@@ -26,6 +29,5 @@ public interface PostagemRepository extends JpaRepository<PostagemModel, Integer
 	
 	@Query(value = "select count(tema_id) from tb_postagens where tema_id = :id" , nativeQuery = true)
 	public int countPosts2(@Param("id") int id);
-	
 	
 }
