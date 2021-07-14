@@ -1,6 +1,7 @@
 package br.org.generation.delas.seguranca;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,14 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import br.org.generation.delas.model.UsuarioModel;
 
 public class UserDetailsImpl implements UserDetails {
-
 	private static final long serialVersionUID = 1L;
 
 	private String userName;
 	private String password;
+	private List<GrantedAuthority> authorities;
 	
 	public UserDetailsImpl(UsuarioModel user) {
-		this.userName = user.getNome();
+		this.userName = user.getUsuario();
 		this.password = user.getSenha();
 		
 	}
@@ -25,7 +26,7 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
+		return authorities;
 	}
 
 	@Override

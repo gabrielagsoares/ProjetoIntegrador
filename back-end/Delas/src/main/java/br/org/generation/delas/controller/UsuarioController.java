@@ -51,7 +51,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/cadastrar")
-	public ResponseEntity <UsuarioModel> Post(@RequestBody UsuarioModel usuario) {
+	public ResponseEntity<UsuarioModel> Post(@RequestBody UsuarioModel usuario) {
 
 		Optional<UsuarioModel> user = usuarioService.CadastrarUsuario(usuario);
 		try {

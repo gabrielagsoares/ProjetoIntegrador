@@ -42,10 +42,12 @@ public class UsuarioModel {
 	private String email;
 	
 	@NotNull
+	@Size(min = 6)
 	private String senha;
 	
 	// Criar uma condição que não permita a repetição de um nome de usuario; findByUser
 	@NotNull
+	@Size(min = 5, max = 100)
 	private String usuario;
 	
 	private String telefone;
@@ -64,11 +66,10 @@ public class UsuarioModel {
 	@NotNull
 	private String tipoUser;
 	
-	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuarios", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuarios")
 	private List<PostagemModel> postagens;
 
-	
 	public int getId() {
 		return id;
 	}
@@ -180,10 +181,5 @@ public class UsuarioModel {
 	public void setPostagens(List<PostagemModel> postagens) {
 		this.postagens = postagens;
 	}
-	
-	
-	
-	
-	
 	
 }

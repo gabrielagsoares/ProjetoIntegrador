@@ -97,7 +97,7 @@ public class PostagemModel {
 	public void setUsuarios(UsuarioModel usuarios) {
 		this.usuarios = usuarios;
 	}
-	
-	
 
-}
+	}
+
+

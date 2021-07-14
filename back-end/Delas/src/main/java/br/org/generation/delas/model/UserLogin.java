@@ -2,7 +2,7 @@ package br.org.generation.delas.model;
 
 public class UserLogin {
 	
-	private int id;
+	private long id;
 	
 	private String usuario;
 	
@@ -13,12 +13,12 @@ public class UserLogin {
 	private String fotoPerfil;
 	
 	private String tipoUser;
-	
-	public int getId() {
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -63,6 +63,9 @@ public class UserLogin {
 	}
 	
 	
+	}
+	
+	
 	
 
-}
+

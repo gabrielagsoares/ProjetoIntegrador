@@ -42,10 +42,9 @@ public class Temas {
 	@PositiveOrZero
 	private int qtd_post;
 	
-	@OneToMany(mappedBy = "temas", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "temas", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("temas")
 	private List<PostagemModel> postagens;
-
 
 	public int getId() {
 		return id;
@@ -87,7 +86,4 @@ public class Temas {
 		this.postagens = postagens;
 	}
 
-	
-	
-	
 }
